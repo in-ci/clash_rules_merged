@@ -9,7 +9,7 @@ import string
 
 def download_text(url):
     """下载远程文本，不写入硬盘，仅返回行列表"""
-    print(f"下载: {url}")
+    print(f"\n\n下载: {url}")
     resp = requests.get(url, timeout=20)
     resp.raise_for_status()
     resp.encoding = resp.apparent_encoding
@@ -88,7 +88,7 @@ def dedup_and_output(urls, output_file):
                 unique += 1
                 merged_lines.append(line)  # 保序加入
 
-    # print(f"\n已保序合并唯一规则 {unique} 条，开始按首字母分组排序…")
+    print(f"\n已保序合并唯一规则 {unique} 条，开始按首字母分组排序…")
 
     # 按你的要求排序
     sorted_lines = group_sort_stable(merged_lines)
@@ -99,8 +99,8 @@ def dedup_and_output(urls, output_file):
         for line in sorted_lines:
             out.write(line + "\n")
 
-    # print(f"最终写入：{output_file}")
-    # print(f"总计读取 {total} 行，唯一 {unique} 行，已按 0-9, a-z 分组排序。")
+    print(f"最终写入：{output_file}")
+    print(f"总计读取 {total} 行，唯一 {unique} 行，已按 0-9, a-z 分组排序。")
 
 
 if __name__ == "__main__":
@@ -123,7 +123,7 @@ if __name__ == "__main__":
     reject_urls = [
         "https://anti-ad.net/clash.yaml",
         "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/reject.txt",
-        # "https://raw.githubusercontent.com/REIJI007/AdBlock_Rule_For_Clash/main/adblock_reject.yaml",
+        "https://raw.githubusercontent.com/REIJI007/AdBlock_Rule_For_Clash/main/adblock_reject.yaml",
         "https://raw.githubusercontent.com/217heidai/adblockfilters/main/rules/adblockmihomolite.yaml",
         "https://raw.githubusercontent.com/217heidai/adblockfilters/main/rules/adblockmihomo.yaml"
     ]
