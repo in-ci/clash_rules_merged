@@ -1,0 +1,43 @@
+name: Update Rules List
+
+on:
+  schedule:
+    - cron: '0 0 * * *'    # 0点执行一次（UTC）
+  workflow_dispatch:       # 手动触发
+  push:                    # 代码提交触发
+
+jobs:
+  update-ip-list:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🧾 Checkout repository
+        uses: actions/checkout@v3
+
+      - name: 🐍 Set up Python 3.9
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: 📦 Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: 🚀 Run clash_rules_merged.py
+        run: python clash_rules_merged.py
+
+      - name: ✅ Commit and push
+        run: |
+          git config --global user.email "${{ github.actor }}@users.noreply.github.com"
+          git config --global user.name "${{ github.actor }}"
+
+          
+          # 检查是否有任何变更
+          if git diff --quiet; then
+            echo "No changes detected, skipping commit."
+          else
+            git add .
+            git commit -m "Automatic update by ${{ github.actor }}"
+            git push
+          fi
