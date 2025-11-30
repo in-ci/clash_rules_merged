@@ -123,6 +123,9 @@ if __name__ == "__main__":
     reject_urls = [
         "https://anti-ad.net/clash.yaml",
         "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/reject.txt",
+        "https://raw.githubusercontent.com/REIJI007/AdBlock_Rule_For_Clash/main/adblock_reject.yaml",
+        "https://raw.githubusercontent.com/217heidai/adblockfilters/main/rules/adblockmihomolite.yaml",
+        "https://raw.githubusercontent.com/217heidai/adblockfilters/main/rules/adblockmihomo.yaml"
     ]
 
     dedup_and_output(direct_urls, direct_output_file)
