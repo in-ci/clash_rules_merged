@@ -88,7 +88,7 @@ def dedup_and_output(urls, output_file):
                 unique += 1
                 merged_lines.append(line)  # 保序加入
 
-    print(f"\n已保序合并唯一规则 {unique} 条，开始按首字母分组排序…")
+    # print(f"\n已保序合并唯一规则 {unique} 条，开始按首字母分组排序…")
 
     # 按你的要求排序
     sorted_lines = group_sort_stable(merged_lines)
@@ -123,7 +123,6 @@ if __name__ == "__main__":
     reject_urls = [
         "https://anti-ad.net/clash.yaml",
         "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/reject.txt",
-        "https://raw.githubusercontent.com/REIJI007/AdBlock_Rule_For_Clash/main/adblock_reject.yaml",
         "https://raw.githubusercontent.com/217heidai/adblockfilters/main/rules/adblockmihomolite.yaml",
         "https://raw.githubusercontent.com/217heidai/adblockfilters/main/rules/adblockmihomo.yaml"
     ]
