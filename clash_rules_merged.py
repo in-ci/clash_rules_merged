@@ -110,10 +110,14 @@ if __name__ == "__main__":
     reject_output_file = "clash_reject_domain_rules_merged.txt"
 
     # 直连域名规则url列表
-    direct_urls = []
+    direct_urls = [
+        "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/direct.txt",
+    ]
 
     # 代理域名规则url列表
-    proxy_urls = []
+    proxy_urls = [
+        "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/proxy.txt",
+    ]
 
     # 广告域名规则url列表
     reject_urls = [
