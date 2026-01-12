@@ -42,9 +42,16 @@ jobs:
           echo "Downloading from: $URL"
 
           # 3. 下载最新的 Mihomo 内核 (amd64)并解压
+          # 先删除可能存在的旧文件，防止干扰
+          rm -f mihomo.gz mihomo mihomo_bin
+          
           wget -O mihomo.gz "$URL"
-          gunzip mihomo.gz
-          mv mihomo mihomo_bin
+          
+          # 使用 -f 强制解压，即使存在同名文件也会覆盖
+          gunzip -f mihomo.gz
+          
+          # 重命名并赋予权限
+          mv -f mihomo mihomo_bin
           chmod +x mihomo_bin
 
       # --- 新增：转换生成的 YAML 为 MRS ---
