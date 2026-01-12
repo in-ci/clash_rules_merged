@@ -27,17 +27,33 @@ jobs:
       - name: 🚀 Run clash_rules_merged.py
         run: python clash_rules_merged.py
 
+      # --- 新增：下载并准备 Mihomo 内核 ---
+      - name: 📥 Download Mihomo
+        run: |
+          # 下载最新的 Mihomo 内核 (amd64)
+          wget https://github.com/MetaCubeX/mihomo/releases/download/v1.19.18/mihomo-linux-amd64-compatible-v1.19.18.gz
+          gunzip mihomo-linux-amd64-compatible-v1.19.18.gz
+          mv mihomo-linux-amd64-compatible-v1.19.18 mihomo
+          chmod +x mihomo
+
+      # --- 新增：转换生成的 YAML 为 MRS ---
+      - name: ⚙️ Convert Rules to MRS
+        run: |
+          ./mihomo convert-ruleset domain yaml clash_direct_domain_rules_merged.txt clash_direct.mrs
+          ./mihomo convert-ruleset domain yaml clash_proxy_domain_rules_merged.txt clash_proxy.mrs
+          ./mihomo convert-ruleset domain yaml clash_reject_domain_rules_merged.txt clash_reject.mrs
+      # ------------------------------------
+
       - name: ✅ Commit and push
         run: |
           git config --global user.email "${{ github.actor }}@users.noreply.github.com"
-          git config --global user.name "${{ github.actor }}"
+          git config --global user.name "${{ github.actor }}"      
 
-          
-          # 检查是否有任何变更
-          if git diff --quiet; then
+          # 检查是否有变更（包括新生成的 .mrs 文件）
+          if git diff --quiet && [ -z "$(git ls-files --others --exclude-standard)" ]; then
             echo "No changes detected, skipping commit."
           else
             git add .
-            git commit -m "Automatic update by ${{ github.actor }}"
+            git commit -m "Automatic update and MRS conversion by ${{ github.actor }}"
             git push
           fi
