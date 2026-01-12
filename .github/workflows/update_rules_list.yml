@@ -43,7 +43,7 @@ jobs:
 
           # 3. 下载最新的 Mihomo 内核 (amd64)并解压
           # 先删除可能存在的旧文件，防止干扰
-          rm -f mihomo.gz mihomo mihomo_bin
+          rm -rf mihomo.gz mihomo mihomo_bin
           
           wget -O mihomo.gz "$URL"
           
@@ -65,7 +65,10 @@ jobs:
       - name: ✅ Commit and push
         run: |
           git config --global user.email "${{ github.actor }}@users.noreply.github.com"
-          git config --global user.name "${{ github.actor }}"      
+          git config --global user.name "${{ github.actor }}"   
+
+          # 清理不需要推送到仓库的文件
+          rm -rf *.gz mihomo mihomo_bin
 
           # 检查是否有变更（包括新生成的 .mrs 文件）
           if git diff --quiet && [ -z "$(git ls-files --others --exclude-standard)" ]; then
