@@ -30,18 +30,29 @@ jobs:
       # --- 新增：下载并准备 Mihomo 内核 ---
       - name: 📥 Download Mihomo
         run: |
-          # 下载最新的 Mihomo 内核 (amd64)
-          wget https://github.com/MetaCubeX/mihomo/releases/download/v1.19.18/mihomo-linux-amd64-compatible-v1.19.18.gz
-          gunzip mihomo-linux-amd64-compatible-v1.19.18.gz
-          mv mihomo-linux-amd64-compatible-v1.19.18 mihomo
-          chmod +x mihomo
+          # 1. 通过 GitHub API 获取最新版本号 (Tag Name)
+          LATEST_VERSION=$(curl -s https://api.github.com/repos/MetaCubeX/mihomo/releases/latest | jq -r .tag_name)
+          echo "Latest version is $LATEST_VERSION"
+
+          # 2. 拼接下载链接 (注意：API 获取的 tag 通常带有 'v'，文件名也带 'v')
+          # 目标文件名格式：mihomo-linux-amd64-v1.19.18.gz
+          FILENAME="mihomo-linux-amd64-${LATEST_VERSION}.gz"
+          URL="https://github.com/MetaCubeX/mihomo/releases/download/${LATEST_VERSION}/${FILENAME}"
+          
+          echo "Downloading from: $URL"
+
+          # 3. 下载最新的 Mihomo 内核 (amd64)并解压
+          wget -O mihomo.gz "$URL"
+          gunzip mihomo.gz
+          mv mihomo mihomo_bin
+          chmod +x mihomo_bin
 
       # --- 新增：转换生成的 YAML 为 MRS ---
       - name: ⚙️ Convert Rules to MRS
         run: |
-          ./mihomo convert-ruleset domain yaml clash_direct_domain_rules_merged.txt clash_direct.mrs
-          ./mihomo convert-ruleset domain yaml clash_proxy_domain_rules_merged.txt clash_proxy.mrs
-          ./mihomo convert-ruleset domain yaml clash_reject_domain_rules_merged.txt clash_reject.mrs
+          ./mihomo_bin convert-ruleset domain yaml clash_direct_domain_rules_merged.txt clash_direct_domain_rules_merged.mrs
+          ./mihomo_bin convert-ruleset domain yaml clash_proxy_domain_rules_merged.txt clash_proxy_domain_rules_merged.mrs
+          ./mihomo_bin convert-ruleset domain yaml clash_reject_domain_rules_merged.txt clash_reject_domain_rules_merged.mrs
       # ------------------------------------
 
       - name: ✅ Commit and push
