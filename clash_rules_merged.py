@@ -86,9 +86,9 @@ def dedup_and_output(urls, output_file):
 
 if __name__ == "__main__":
     # 定义输出文件
-    direct_out = "clash_direct_domain_rules_merged.txt"
-    proxy_out = "clash_proxy_domain_rules_merged.txt"
-    reject_out = "clash_reject_domain_rules_merged.txt"
+    direct_out = "clash_direct_domain_rules_merged.yaml"
+    proxy_out = "clash_proxy_domain_rules_merged.yaml"
+    reject_out = "clash_reject_domain_rules_merged.yaml"
 
     # 规则源配置
     direct_urls = [

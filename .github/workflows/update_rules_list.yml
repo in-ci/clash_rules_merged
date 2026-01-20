@@ -57,9 +57,9 @@ jobs:
       # --- 新增：转换生成的 YAML 为 MRS ---
       - name: ⚙️ Convert Rules to MRS
         run: |
-          ./mihomo_bin convert-ruleset domain yaml clash_direct_domain_rules_merged.txt clash_direct_domain_rules_merged.mrs
-          ./mihomo_bin convert-ruleset domain yaml clash_proxy_domain_rules_merged.txt clash_proxy_domain_rules_merged.mrs
-          ./mihomo_bin convert-ruleset domain yaml clash_reject_domain_rules_merged.txt clash_reject_domain_rules_merged.mrs
+          ./mihomo_bin convert-ruleset domain yaml clash_direct_domain_rules_merged.yaml clash_direct_domain_rules_merged.mrs
+          ./mihomo_bin convert-ruleset domain yaml clash_proxy_domain_rules_merged.yaml clash_proxy_domain_rules_merged.mrs
+          ./mihomo_bin convert-ruleset domain yaml clash_reject_domain_rules_merged.yaml clash_reject_domain_rules_merged.mrs
       # ------------------------------------
 
       - name: ✅ Commit and push
