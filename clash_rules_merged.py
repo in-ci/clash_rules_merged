@@ -110,8 +110,7 @@ if __name__ == "__main__":
         "https://anti-ad.net/clash.yaml",
         "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/reject.txt",
         "https://raw.githubusercontent.com/217heidai/adblockfilters/main/rules/adblockmihomolite.yaml",
-        "https://raw.githubusercontent.com/217heidai/adblockfilters/main/rules/adblockmihomo.yaml",
-        "https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/reject-list.txt"
+        "https://raw.githubusercontent.com/217heidai/adblockfilters/main/rules/adblockmihomo.yaml"
     ]
 
     # 执行合并与精简
