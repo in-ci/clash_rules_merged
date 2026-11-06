@@ -1,0 +1,175 @@
+payload:
+  # ============================================================
+  # 1. OpenAI / ChatGPT / Sora
+  # ============================================================
+  - '+.chatgpt.com'
+  - '+.openai.com'
+  - '+.oaistatic.com'
+  - '+.oaiusercontent.com'
+  - '+.oaistatsig.com'
+  - '+.chat.com'
+  - '+.sora.com'
+  - '+.openai.org'
+  - '+.chatgpt.site'
+  - '+.chatgpt.livekit.cloud'
+  - '+.turn.livekit.cloud'
+  - '+.host.livekit.cloud'
+  - 'openaiapi-site.azureedge.net'
+  - 'openaiassets.blob.core.windows.net'
+  - 'openaicom.imgix.net'
+  - 'production-openaicom-storage.azureedge.net'
+  - 'openaicomproductionae4b.blob.core.windows.net'
+
+  # ============================================================
+  # 2. Anthropic / Claude
+  # ============================================================
+  - '+.anthropic.com'
+  - '+.claude.ai'
+  - '+.claude.com'
+  - '+.claude.dev'
+  - '+.claude.app'
+  - '+.claude.new'
+  - '+.claude.site'
+  - '+.clau.de'
+  - '+.claudeusercontent.com'
+  - '+.anthropic.team'
+  - '+.chatbotclaude.com'
+  - '+.claudeacademy.com'
+  - '+.claudemcpclient.com'
+  - '+.claudemcpcontent.com'
+  - '+.claudepages.dev'
+  - '+.claudestudio.com'
+  - '+.crixet.com'
+  - 'servd-anthropic-website.b-cdn.net'
+
+  # ============================================================
+  # 3. Google Gemini / AI Studio / NotebookLM / DeepMind
+  # ============================================================
+  - '+.gemini.google.com'
+  - '+.aistudio.google.com'
+  - '+.makersuite.google.com'
+  - '+.notebooklm.google'
+  - '+.notebooklm.google.com'
+  - '+.deepmind.com'
+  - '+.deepmind.google'
+  - '+.generativeai.google'
+  - '+.bard.google.com'
+  - '+.ai.google.dev'
+  - '+.antigravity.google'
+  - '+.antigravity-unleash.goog'
+  - '+.flow.google'
+  - '+.flow.google.com'
+  - '+.jules.google'
+  - '+.jules.google.com'
+  - '+.labs.google'
+  - '+.labs.google.com'
+  - '+.opal.google'
+  - '+.opal.google.com'
+  - '+.aicode.googleapis.com'
+  - '+.aida.googleapis.com'
+  - '+.aisandbox-pa.googleapis.com'
+  - '+.generativelanguage.googleapis.com'
+  - '+.proactivebackend-pa.googleapis.com'
+  - '+.cloudaicompanion.googleapis.com'
+  - '+.gemini.google'
+  - '+.gemini.gstatic.com'
+
+  # ============================================================
+  # 4. Microsoft Copilot / Bing AI / Designer
+  # ============================================================
+  - '+.copilot.microsoft.com'
+  - '+.copilot.cloud.microsoft'
+  - '+.copilot.microsoft'
+  - '+.designer.microsoft.com'
+  - '+.sydney.bing.com'
+  - '+.edgeservices.bing.com'
+
+  # ============================================================
+  # 5. Perplexity AI
+  # ============================================================
+  - '+.perplexity.ai'
+  - '+.pplx.ai'
+
+  # ============================================================
+  # 6. xAI (Grok)
+  # ============================================================
+  - '+.x.ai'
+  - '+.grok.com'
+
+  # ============================================================
+  # 7. AI 辅助编程 / IDE (Cursor / Windsurf / Codeium / Copilot)
+  # ============================================================
+  - '+.cursor.com'
+  - '+.cursor.sh'
+  - '+.cursorapi.com'
+  - '+.windsurf.ai'
+  - '+.codeium.com'
+  - '+.codeiumapi.com'
+  - '+.githubcopilot.com'
+  - '+.copilot-proxy.githubusercontent.com'
+  - '+.individual.githubcopilot.com'
+  - '+.continue.dev'
+  - '+.tabnine.com'
+  - '+.v0.dev'
+  - '+.bolt.new'
+  - '+.lovable.dev'
+  - '+.replit.com'
+
+  # ============================================================
+  # 8. 模型聚合 / API 服务商 / 推理平台
+  # ============================================================
+  - '+.openrouter.ai'
+  - '+.groq.com'
+  - '+.groqcloud.com'
+  - '+.together.ai'
+  - '+.together.xyz'
+  - '+.fireworks.ai'
+  - '+.cohere.com'
+  - '+.cohere.ai'
+  - '+.mistral.ai'
+  - '+.lechat.mistral.ai'
+  - '+.replicate.com'
+  - '+.replicate.delivery'
+  - '+.deepinfra.com'
+  - '+.anyscale.com'
+  - '+.fal.ai'
+  - '+.huggingface.co'
+  - '+.hf.space'
+  - '+.hf.co'
+
+  # ============================================================
+  # 9. AI 图像 / 视频 / 艺术生成
+  # ============================================================
+  - '+.midjourney.com'
+  - '+.civitai.com'
+  - '+.stability.ai'
+  - '+.clipdrop.co'
+  - '+.runwayml.com'
+  - '+.runway.com'
+  - '+.pika.art'
+  - '+.lumalabs.ai'
+  - '+.krea.ai'
+  - '+.magnific.ai'
+
+  # ============================================================
+  # 10. AI 音频 / 音乐 / 语音合成
+  # ============================================================
+  - '+.elevenlabs.io'
+  - '+.suno.ai'
+  - '+.suno.com'
+  - '+.udio.com'
+
+  # ============================================================
+  # 11. 其它主流海外 AI 平台与工具
+  # ============================================================
+  - '+.poe.com'
+  - '+.poecdn.net'
+  - '+.character.ai'
+  - '+.characterai.io'
+  - '+.phind.com'
+  - '+.you.com'
+  - '+.jasper.ai'
+  - '+.coze.com'
+  - '+.cici.ai'
+  - '+.ciciai.com'
+  - '+.deepl.com'

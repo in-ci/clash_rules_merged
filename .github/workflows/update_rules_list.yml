@@ -1,0 +1,84 @@
+name: Update Rules List
+
+on:
+  schedule:
+    - cron: '0 0 * * *'    # 0点执行一次（UTC）
+  workflow_dispatch:       # 手动触发
+  push:
+    branches:
+      - main               # 仅 main 分支变动触发构建
+
+jobs:
+  update-ip-list:
+    runs-on: ubuntu-26.04
+
+    # 允许工作流自动推送产物分支
+    permissions:
+      contents: write
+
+    steps:
+      - name: 🧾 Checkout repository
+        uses: actions/checkout@v7
+
+      - name: 🐍 Set up Python 3.12
+        uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: requirements.txt
+
+      - name: 📦 Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+
+      - name: 🚀 Run clash_rules_merged.py
+        run: python clash_rules_merged.py
+
+      # --- 下载并准备 Mihomo 内核 ---
+      - name: 📥 Download Mihomo
+        run: |
+          LATEST_VERSION=$(curl -s https://api.github.com/repos/MetaCubeX/mihomo/releases/latest | jq -r .tag_name)
+          echo "Latest version is $LATEST_VERSION"
+          FILENAME="mihomo-linux-amd64-${LATEST_VERSION}.gz"
+          URL="https://github.com/MetaCubeX/mihomo/releases/download/${LATEST_VERSION}/${FILENAME}"
+          echo "Downloading from: $URL"
+          rm -rf mihomo.gz mihomo mihomo_bin
+          wget -O mihomo.gz "$URL"
+          gunzip -f mihomo.gz
+          mv -f mihomo mihomo_bin
+          chmod +x mihomo_bin
+
+      # --- 转换生成的 YAML 为 MRS ---
+      - name: ⚙️ Convert Rules to MRS
+        run: |
+          ./mihomo_bin convert-ruleset domain yaml clash_direct_domain_rules_merged.yaml clash_direct_domain_rules_merged.mrs
+          ./mihomo_bin convert-ruleset domain yaml clash_proxy_domain_rules_merged.yaml clash_proxy_domain_rules_merged.mrs
+          ./mihomo_bin convert-ruleset domain yaml clash_reject_domain_rules_merged.yaml clash_reject_domain_rules_merged.mrs
+          ./mihomo_bin convert-ruleset domain yaml clash_ai_proxy_domain_rules_merged.yaml clash_ai_proxy_domain_rules_merged.mrs
+
+      # --- 独立发布到 release 分支（保持 main 纯净，保持 release 单 commit 且体积恒定） ---
+      - name: 🚀 Publish rules to release branch
+        run: |
+          git config --global user.email "${{ github.actor }}@users.noreply.github.com"
+          git config --global user.name "${{ github.actor }}"
+
+          # 清理临时文件
+          rm -rf *.gz mihomo mihomo_bin
+
+          # 创建临时构建目录并暂存产物
+          mkdir -p ../dist
+          cp clash_*_domain_rules_merged.yaml clash_*_domain_rules_merged.mrs ../dist/
+
+          # 切换到一个全新的孤儿分支 release
+          git checkout --orphan release
+          git rm -rf .
+
+          # 将产物移回根目录
+          cp ../dist/* .
+          rm -rf ../dist
+
+          # 提交并强制推送到 release 分支（确保 release 分支只有 1 个最新 commit，体积恒定为约 7MB）
+          git add -f clash_*_domain_rules_merged.yaml clash_*_domain_rules_merged.mrs
+          git commit -m "Automated build release by ${{ github.actor }}"
+          git push --force origin release
