@@ -6,76 +6,63 @@ Clash / Mihomo 规则聚合（Domain 规则集与 MRS 二进制规则集）。
 
 ---
 
-## 架构说明：双轨发布机制 (Dual-Track)
+## 规则订阅链接
 
-本项目采用**双轨发布机制**，同时兼顾国内 CDN 加速与页面直观下载，且 Git 源码仓库**永不膨胀**：
+### 1. 代理域名 (Proxy)
 
-1. **`main` 源码分支**：纯文本代码与自定义规则配置（不到 30 KB），日常开发随便 `pull/push` 永不冲突。
-2. **轨道一：jsDelivr CDN 加速（`release` 分支）**：每次单 Commit 强制覆盖推送，专供 `testingcf.jsdelivr.net` / `cdn.jsdelivr.net` 加速，大小固定不累加。
-3. **轨道二：GitHub Releases 滚动发布（Tag: `latest`）**：附件直接存放在云存储，零占用 Git 仓库磁盘配额，直链永久固定。
+#### MRS 格式:
+- 原始链接: `https://raw.githubusercontent.com/in-ci/clash_rules_merged/release/clash_proxy_domain_rules_merged.mrs`
+- 加速链接: `https://testingcf.jsdelivr.net/gh/in-ci/clash_rules_merged@release/clash_proxy_domain_rules_merged.mrs`
 
----
-
-## 订阅链接配置指南
-
-### 轨道一：jsDelivr CDN 加速链接（国内免翻墙首选）
-
-原先的 `testingcf.jsdelivr.net` 依然完美支持（分支名由 `main` 调整为 `release`）：
-
-#### 1. 代理域名 (Proxy)
-- **MRS 格式**:
-  ```
-  https://testingcf.jsdelivr.net/gh/in-ci/clash_rules_merged@release/clash_proxy_domain_rules_merged.mrs
-  ```
-- **YAML 格式**:
-  ```
-  https://testingcf.jsdelivr.net/gh/in-ci/clash_rules_merged@release/clash_proxy_domain_rules_merged.yaml
-  ```
-
-#### 2. 国外 AI 代理域名 (AI Proxy)
-- **MRS 格式**:
-  ```
-  https://testingcf.jsdelivr.net/gh/in-ci/clash_rules_merged@release/clash_ai_proxy_domain_rules_merged.mrs
-  ```
-- **YAML 格式**:
-  ```
-  https://testingcf.jsdelivr.net/gh/in-ci/clash_rules_merged@release/clash_ai_proxy_domain_rules_merged.yaml
-  ```
-
-#### 3. 直连域名 (Direct)
-- **MRS 格式**:
-  ```
-  https://testingcf.jsdelivr.net/gh/in-ci/clash_rules_merged@release/clash_direct_domain_rules_merged.mrs
-  ```
-- **YAML 格式**:
-  ```
-  https://testingcf.jsdelivr.net/gh/in-ci/clash_rules_merged@release/clash_direct_domain_rules_merged.yaml
-  ```
-
-#### 4. 广告拦截域名 (Reject)
-- **MRS 格式**:
-  ```
-  https://testingcf.jsdelivr.net/gh/in-ci/clash_rules_merged@release/clash_reject_domain_rules_merged.mrs
-  ```
-- **YAML 格式**:
-  ```
-  https://testingcf.jsdelivr.net/gh/in-ci/clash_rules_merged@release/clash_reject_domain_rules_merged.yaml
-  ```
+#### YAML 格式:
+- 原始链接: `https://raw.githubusercontent.com/in-ci/clash_rules_merged/release/clash_proxy_domain_rules_merged.yaml`
+- 加速链接: `https://testingcf.jsdelivr.net/gh/in-ci/clash_rules_merged@release/clash_proxy_domain_rules_merged.yaml`
 
 ---
 
-### 轨道二：GitHub Releases 附件直链
+### 2. 国外 AI 代理域名 (AI Proxy)
+涵盖 OpenAI / ChatGPT / Sora、Claude / Anthropic、Google Gemini、Copilot、Perplexity、Grok、Cursor、Midjourney、Hugging Face 等主流海外 AI 服务。
 
-页面直接访问：[Releases · in-ci/clash_rules_merged](https://github.com/in-ci/clash_rules_merged/releases/tag/latest)
+#### MRS 格式:
+- 原始链接: `https://raw.githubusercontent.com/in-ci/clash_rules_merged/release/clash_ai_proxy_domain_rules_merged.mrs`
+- 加速链接: `https://testingcf.jsdelivr.net/gh/in-ci/clash_rules_merged@release/clash_ai_proxy_domain_rules_merged.mrs`
 
-* **官方直链（客户端走代理时）**：
-  * Proxy MRS: `https://github.com/in-ci/clash_rules_merged/releases/download/latest/clash_proxy_domain_rules_merged.mrs`
-  * AI Proxy MRS: `https://github.com/in-ci/clash_rules_merged/releases/download/latest/clash_ai_proxy_domain_rules_merged.mrs`
-  * Direct MRS: `https://github.com/in-ci/clash_rules_merged/releases/download/latest/clash_direct_domain_rules_merged.mrs`
-  * Reject MRS: `https://github.com/in-ci/clash_rules_merged/releases/download/latest/clash_reject_domain_rules_merged.mrs`
-* **Release 镜像加速（如 ghfast.top）**：
-  * 前缀加 `https://ghfast.top/` 即可，例如：
-    `https://ghfast.top/https://github.com/in-ci/clash_rules_merged/releases/download/latest/clash_proxy_domain_rules_merged.mrs`
+#### YAML 格式:
+- 原始链接: `https://raw.githubusercontent.com/in-ci/clash_rules_merged/release/clash_ai_proxy_domain_rules_merged.yaml`
+- 加速链接: `https://testingcf.jsdelivr.net/gh/in-ci/clash_rules_merged@release/clash_ai_proxy_domain_rules_merged.yaml`
+
+---
+
+### 3. 直连域名 (Direct)
+
+#### MRS 格式:
+- 原始链接: `https://raw.githubusercontent.com/in-ci/clash_rules_merged/release/clash_direct_domain_rules_merged.mrs`
+- 加速链接: `https://testingcf.jsdelivr.net/gh/in-ci/clash_rules_merged@release/clash_direct_domain_rules_merged.mrs`
+
+#### YAML 格式:
+- 原始链接: `https://raw.githubusercontent.com/in-ci/clash_rules_merged/release/clash_direct_domain_rules_merged.yaml`
+- 加速链接: `https://testingcf.jsdelivr.net/gh/in-ci/clash_rules_merged@release/clash_direct_domain_rules_merged.yaml`
+
+---
+
+### 4. 广告拦截域名 (Reject)
+
+#### MRS 格式:
+- 原始链接: `https://raw.githubusercontent.com/in-ci/clash_rules_merged/release/clash_reject_domain_rules_merged.mrs`
+- 加速链接: `https://testingcf.jsdelivr.net/gh/in-ci/clash_rules_merged@release/clash_reject_domain_rules_merged.mrs`
+
+#### YAML 格式:
+- 原始链接: `https://raw.githubusercontent.com/in-ci/clash_rules_merged/release/clash_reject_domain_rules_merged.yaml`
+- 加速链接: `https://testingcf.jsdelivr.net/gh/in-ci/clash_rules_merged@release/clash_reject_domain_rules_merged.yaml`
+
+---
+
+## 备用下载方式：GitHub Releases 滚动发布
+
+本项目同时维护 **Rolling Release**，页面直接下载或 Release 镜像加速：
+- 发布页面: [Releases · in-ci/clash_rules_merged (Tag: latest)](https://github.com/in-ci/clash_rules_merged/releases/tag/latest)
+- Release 官方直链前缀: `https://github.com/in-ci/clash_rules_merged/releases/download/latest/`
+- Release 镜像加速前缀: `https://ghfast.top/https://github.com/in-ci/clash_rules_merged/releases/download/latest/`
 
 ---
 
